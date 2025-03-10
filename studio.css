@@ -47,7 +47,6 @@ html, body {
     justify-content: center;
     align-items: center;
     background-color: #000;
-    max-width:1200px;
 }
 .header{
     display:flex;
