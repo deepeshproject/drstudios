@@ -1,0 +1,192 @@
+/* General Styling */
+.header{
+    display:flex;
+    background:#000;
+    opacity:0.9;
+    /* border:2px solid black;
+    box-shadow: 0px 2px 10px 2px black; */
+    height:60px;
+    z-index: 1000;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    transition: background-color 0.2s ease-in-out;
+}
+.header:hover{
+    background-color: rgba(0, 0, 0, 0.9); 
+}
+.hello{
+    position:relative;
+    text-align: right;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.1rem;
+    float:right;
+    left: 70px;
+    top: 10px;
+
+}
+.des{
+    width:200%;
+}
+.logo
+{
+    position: relative;
+    height:220px;
+    width:190px;
+    font-size: 100px;
+    top: -75px;
+    left:-30px;
+    align-items: center;
+}
+.insta{
+    position: relative;
+    height:24px;
+    width:24px;
+    top: -95px;
+    left:210px;
+}
+.whatsapp{
+    position: relative;
+    height:35px;
+    width:35px;
+    top: -90px;
+    left:230px;
+}
+.gmail{
+    position: relative;
+    height:27px;
+    width:27px;
+    top: -94px;
+    left:248px;
+}
+li{
+    display: inline-block;
+    padding: 20px 20px 20px 20px;
+}
+
+li a {
+    position: relative;
+    text-decoration: none;
+    color: white;
+    padding: 5px 0;
+    transition: color 0.3s ease-in-out;
+    top:-20px;
+}
+
+li a::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: red;
+    opacity: 0; /* Hide initially */
+    transition: opacity 0.3s ease-in-out;
+}
+
+li a:hover {
+    color: red;
+}
+
+li a:hover::before {
+    opacity: 1; /* Just make it visible */
+}
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Contact Form Container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+/* Contact Form Box */
+.contact-form {
+    position: relative;
+    background: red;
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 370px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    top:90px;
+}
+
+h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: overline;
+}
+
+p {
+    text-decoration: overline;
+    font-size: 14px;
+    color: black;
+}
+
+/* Input Fields */
+input, textarea {
+    position: relative;
+    left:-10px;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    border-bottom: 2px solid black;
+    background: transparent;
+}
+input::placeholder{
+    color: #000;
+}
+textarea::placeholder{
+    color: #000;
+}
+
+/* Send Button */
+button {
+    width: 100%;
+    padding: 10px;
+    background: black;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: red;
+    transition: background-color 0.4s;
+    color: #000;
+    text-decoration: overline;
+}
+
+/* Home Link */
+.home-link {
+    display: block;
+    margin-top: 10px;
+    color: black;
+    text-decoration: none;
+}
+.home-link:hover{
+    text-decoration: underline;
+}

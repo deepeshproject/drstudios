@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="icon" class="icon" type="image/png" href="images/drlogo1.png">
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="images/drlogo1.png" class="logo">
+            <div class="hello">
+               <ul>
+                <li><a href="studio.html">HOME</a></li>
+                <li><a href="studio.html">MOVIES</a></li>
+                <li><a href="studio.html">ABOUT</a></li>
+                <li><a href="studio.html">ACHIEVEMENTS</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul> 
+            <a href="https://www.instagram.com/dr____studios?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><img src="images/instagram.png" class="insta" href="@"></a>
+            <a href="https://wa.me/7032385912?text=Hi"><img src="images/whatsapp.png" class="whatsapp"></a>
+            <a href="https://www.youtube.com/@danushraghavendardrstudios9005" target="_blank"><img src="images/youtube.png" class="gmail"></a>
+            </div> 
+        </div>
+        <div class="contact-form">
+            <h2>Contact Form</h2>
+            <p>Write for Us!</p>
+            <form id="emailForm">
+                <input type="text" id="name" placeholder="Name" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="text" id="age" placeholder="Age" required>
+                <input type="text" id="subject" placeholder="Subject" required> <!-- Custom subject field -->
+                <textarea id="message" placeholder="Write to us!" rows="4" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("emailForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent actual form submission
+
+            let name = encodeURIComponent(document.getElementById("name").value);
+            let email = encodeURIComponent(document.getElementById("email").value);
+            let age = encodeURIComponent(document.getElementById("age").value);
+            let subject = encodeURIComponent(document.getElementById("subject").value); // Get custom subject
+            let message = encodeURIComponent(document.getElementById("message").value);
+
+            let mailtoLink = `https://mail.google.com/mail/?view=cm&fs=1&to=drstudiosofficial19@gmail.com&su=${subject}&body=Name:%20${name}%0AEmail:%20${email}%0AAge:%20${age}%0A%0AMessage:%20${message}`;
+
+            window.open(mailtoLink, "_blank");
+        });
+    </script>
+</body>
+</html>
