@@ -38,15 +38,15 @@
         <div class="row">
                 <div class="slider">
                     <img src="images/coinfinal.png" class="slides1">
+                    <img src="images/dreadfinal.jpg" class="slides2">
                     <img src="images/wagerfinal.jpg" class="slides3">
                     <img src="images/switchfinal.jpg" class="slides4">
-                    <img src="images/9333final.png" class="slides5">  
-                    <img src="images/dreadfinal.jpg" class="slides2">    
+                    <img src="images/9333final.png" class="slides5">      
                         <h3 class="slide-text"><p><i class="fa-solid fa-video" style="color: red;"></i> The Coin | Drama</p><p class="des"><i class="fa-solid fa-ticket" style="color: red;"></i> A story of a friend who faces betrayal at the hands of his best friend.</p><a href="https://www.youtube.com/watch?v=X6GAn27ah5g"><i class="fa-solid fa-circle-play" style="color: red;"></i> Watch Now</a></h3>
+                        <h3 class="slide-text"><p><i class="fa-solid fa-video" style="color: red;"></i> Dread | Horror</p><p class="des"><i class="fa-solid fa-ticket" style="color: red;"></i> The vengeance of a soul lost in a tragic accident.</p><a href="###"><i class="fa-solid fa-circle-play" style="color: red;"></i> Watch Now</a></h3>
                         <h3 class="slide-text"><p><i class="fa-solid fa-video" style="color: red;"></i> Wager | Action</p><p class="des"><i class="fa-solid fa-ticket" style="color: red;"></i> A tale of a bounty hunter on a deadly mission to eliminate his target.</p><a href="https://www.youtube.com/watch?v=Wmmg3dk-FTE"><i class="fa-solid fa-circle-play" style="color: red;"></i> Watch Now</a></h3>
                         <h3 class="slide-text"><p><i class="fa-solid fa-video" style="color: red;"></i> Switch | Action Thriller</p><p class="des"><i class="fa-solid fa-ticket" style="color: red;"></i> The tale of a person who acquires superpowers from a mysterious doll.</p><a href="###"><i class="fa-solid fa-circle-play" style="color: red;"></i> Watch Now</a></h3>
                         <h3 class="slide-text"><p><i class="fa-solid fa-video" style="color: red;"></i> 9333 | Action Drama</p><p class="des"><i class="fa-solid fa-ticket" style="color: red;"></i> A group of friends fun night spirals into unexpected chaos.</p><a href="https://www.youtube.com/watch?v=5t_icDf2yQ0"><i class="fa-solid fa-circle-play" style="color: red;"></i> Watch Now</a></h3>
-                        <h3 class="slide-text"><p><i class="fa-solid fa-video" style="color: red;"></i> Dread | Horror</p><p class="des"><i class="fa-solid fa-ticket" style="color: red;"></i> The vengeance of a soul lost in a tragic accident.</p><a href="https://www.youtube.com/watch?v=Hz_3HUsYzZ8"><i class="fa-solid fa-circle-play" style="color: red;"></i> Watch Now</a></h3>
                     
                 </div>
         </div>
@@ -121,12 +121,20 @@
     </div>
     <script>
         setTimeout(() => {
-            document.getElementById("preloader").style.opacity = "0";
-            setTimeout(() => {
-                document.getElementById("preloader").style.display = "none";
-                document.getElementById("container").style.display = "block";
-            }, 1000);
+            const preloader = document.getElementById("preloader");
+            const container = document.getElementById("container");
+    
+            if (preloader) {
+                preloader.style.opacity = "0";
+                setTimeout(() => {
+                    preloader.style.display = "none";
+                    if (container) {
+                        container.style.display = "block";
+                    }
+                }, 1000);
+            }
         }, 1750);
     </script>
+    
 </body>
 </html>
