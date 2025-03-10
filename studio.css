@@ -517,38 +517,43 @@ footer{
 
         .slides1 {
             position: absolute;
-            width: 180%;
+            width: 160%;
             height: 100%;
             opacity: 0;
             animation: slideShow 20s infinite;
+            left:50px;
         }
         .slides2 {
             position: absolute;
-            width: 180%;
+            width: 160%;
             height: 100%;
             opacity: 0;
             animation: slideShow 20s infinite;
+            left:50px;
         }
         .slides3 {
             position: absolute;
-            width: 180%;
+            width: 160%;
             height: 100%;
             opacity: 0;
             animation: slideShow 20s infinite;
+            left:50px;
         }
         .slides4 {
             position: absolute;
-            width: 180%;
+            width: 160%;
             height: 100%;
             opacity: 0;
             animation: slideShow 20s infinite;
+            left:50px;
         }
         .slides5 {
             position: absolute;
-            width: 180%;
+            width: 160%;
             height: 100%;
             opacity: 0;
             animation: slideShow 20s infinite;
+            left:50px;
         }
 
         /* Show each slide for 5s, then fade out */
