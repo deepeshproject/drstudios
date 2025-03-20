@@ -43,7 +43,7 @@ html, body {
 .logo {
     height: 200px;
     width: auto;
-    margin-left:-30px;
+    margin-left: -30px;
 }
 
 .hello {
@@ -63,7 +63,7 @@ html, body {
     padding: 0 15px;
     position: relative;
     right: 180px;
-    margin:10px;
+    margin: 10px;
     letter-spacing: 0.2rem;
 }
 
@@ -99,19 +99,7 @@ html, body {
     width: 24px;
     margin: 0 10px;
     position: relative;
-    right:20px;
-}
-
-/* Slider Section */
-/* Slider Section */
-.row {
-    display: flex;
-    flex-direction: column; /* Stack the slider and text vertically */
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin-top: 60px;
-    position: relative; /* Make .row the positioning context for the h3 elements */
+    right: 20px;
 }
 
 /* Replace row and row2 with a single movie-container for vertical stacking */
@@ -130,10 +118,10 @@ html, body {
     width: 250px;
     height: 320px;
     padding: 10px;
-    margin: 25px 0; /* Vertical margin only */
+    margin: 10px 0; /* Reduced vertical margin to decrease gap */
     border-radius: 10px;
     box-shadow: 0px 2px 10px 2px white;
-    top:100px;
+    top: 100px;
 }
 
 .img1 {
@@ -219,15 +207,6 @@ button:hover {
     font-size: 14px;
 }
 
-.logo {
-    position: relative;
-    height: 220px;
-    width: 190px;
-    top: -75px;
-    left: -30px;
-    align-items: center;
-}
-
 footer {
     display: flex;
     width: 100%;
@@ -302,10 +281,10 @@ ol li {
         padding: 0;
         margin: 0;
         display: flex; /* Ensure ul is a flex container */
-        width: 300px; /* Ensure ul takes full width of .hello */
+        width: 350px; /* Ensure ul takes full width of .hello */
         position: relative;
-        right: 70px;
-        bottom: 10px;   
+        right: 20px;
+        bottom: 2px;   
     }
 
     .hello li {
@@ -322,7 +301,8 @@ ol li {
         height: 12px; /* Reduce icon size to save space */
         width: 12px;
         margin: 0 2px; /* Reduce margin */
-        position: static; /* Remove relative positioning */
+        position: relative; /* Remove relative positioning */
+        left: 40px;
     }
 
     .header > * {
@@ -335,13 +315,14 @@ ol li {
     }
 
     .box1 {
-        margin: 20px 0; /* Vertical margin only */
+        margin: 10px 0; /* Reduced vertical margin to decrease gap */
         width: 200px; /* Match the screenshot width */
         height: auto; /* Adjust height based on content */
         padding: 5px;
         flex: 0 0 200px; /* Enforce width in flex context */
         max-width: 200px; /* Ensure it doesn't exceed 200px */
         min-width: 0; /* Allow shrinking if needed */
+        top: 100px; /* Reset top positioning */
     }
 
     .img1 {
@@ -388,22 +369,5 @@ ol li {
         width: 90%;
         left: 20px; /* Adjust positioning */
         top: 5px;
-    }
-
-    footer {
-        flex-direction: column; /* Stack footer items vertically */
-        height: auto; /* Adjust height */
-        padding: 10px;
-    }
-
-    .foot {
-        top: 0;
-        left: 0;
-        text-align: center; /* Center text */
-    }
-
-    footer ol li {
-        left: 0; /* Reset positioning */
-        padding: 5px 0; /* Vertical padding */
     }
 }
