@@ -138,6 +138,7 @@ html, body {
     max-width: 1200px;
     height: 60vh;
     border-radius: 10px;
+    bottom:70px;
 }
 
 .slides1, .slides2, .slides3, .slides4, .slides5 {
@@ -181,6 +182,7 @@ h3.slide-text:nth-child(7) { animation-delay: 4s; display: block; }
 h3.slide-text:nth-child(8) { animation-delay: 8s; display: block; }
 h3.slide-text:nth-child(9) { animation-delay: 12s; display: block; }
 h3.slide-text:nth-child(10) { animation-delay: 16s; display: block; }
+
 
 .des {
     width: 100%;
@@ -449,58 +451,6 @@ footer ol li a {
 }
 
 /* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        height: auto;
-        padding: 10px;
-    }
-
-    .logo {
-        margin: 10px 0;
-    }
-
-    .hello {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .hello ul {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .hello li {
-        padding: 10px 0;
-    }
-
-    .insta, .whatsapp, .gmail {
-        margin: 5px 10px;
-    }
-
-    .slider {
-        width: 100%;
-        height: 50vh;
-    }
-
-    h3.slide-text {
-        font-size: 1rem;
-        bottom: 10px;
-    }
-
-    .des {
-        font-size: 0.8rem;
-    }
-
-    .box1 {
-        max-width: 100%;
-    }
-
-    .headmain2 {
-        font-size: 12px;
-        padding: 8px 15px;
-    }
-}
 
 @media (min-width: 1259px) {
     .slider {
@@ -514,5 +464,221 @@ footer ol li a {
     .row2, .row3 {
         max-width: 1400px;
         margin: 60px auto;
+    }
+}
+/* Existing CSS remains unchanged until the media query */
+
+/* Media Query for Phones (max-width: 600px) */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: row; /* Keep horizontal layout */
+        flex-wrap: nowrap; /* Prevent wrapping */
+        height: 60px; /* Reduce height for mobile */
+        padding: 5px; /* Reduce padding */
+        overflow-x: hidden; /* Prevent unwanted scrolling */
+        align-items: center; /* Vertically center items */
+    }
+
+    .logo {
+        height: 70px; /* Further reduce logo size to fit horizontally */
+        margin: 0 5px; /* Minimize margins */
+        position: relative;
+        right: 13px;
+    }
+
+    .hello {
+        flex-direction: row; /* Keep horizontal */
+        font-size: 12px; /* Smaller font for mobile */
+        margin: 0 5px; /* Reduce margin */
+    }
+
+    .hello ul {
+        flex-direction: row; /* Keep menu items horizontal */
+        overflow-x: auto; /* Allow scrolling if menu overflows */
+        white-space: nowrap; /* Prevent wrapping of menu items */
+        padding: 0;
+    }
+    .row{
+        height:60vh;
+    }
+
+    .hello li {
+        padding: 5px; /* Reduce padding */
+        margin: 0 2px; /* Reduce margin between items */
+        position: relative;
+        right: 10px;
+    }
+
+    .hello li a {
+        font-size: 8px; /* Smaller font */
+    }
+
+    .insta, .whatsapp, .gmail {
+        height: 16px;
+        width: 16px;
+        margin: 0 3px;
+        left: 60px;
+    }
+
+    /* Ensure the header doesn't overflow the viewport */
+    .header > * {
+        flex-shrink: 0; /* Prevent shrinking of elements */
+    }
+
+    /* Slider Section Adjustments */
+    .slider {
+        height: 20vh;
+        position: relative;
+        bottom: 50px; /* Consider if this is necessary; may cause layout issues */
+        left: 90px; /* Consider if this is necessary */
+        width: 120%; /* This might cause overflow; adjust if needed */
+    }
+
+    /* Fix h3.slide-text positioning */
+    h3.slide-text {
+        font-size: 0.9rem;
+        position: absolute; /* Keep absolute positioning */
+        top: calc(30vh + 5px); /* Fixed position below slider */
+        left: 155px; /* Center horizontally */
+        transform: translateX(-50%); /* Override any left offset */
+        width: 80%; /* Match slider width */
+        max-width: 1200px;
+        text-align: center;
+        opacity: 0; /* Hidden by default */
+        z-index: 2; /* Above slides */
+        display: block; /* Ensure all are rendered but controlled by animation */
+    }
+
+    /* Sync text with slides using animation delays */
+    h3.slide-text:nth-child(6) { animation: slideTextShow 20s infinite 0s; }
+    h3.slide-text:nth-child(7) { animation: slideTextShow 20s infinite 4s; }
+    h3.slide-text:nth-child(8) { animation: slideTextShow 20s infinite 8s; }
+    h3.slide-text:nth-child(9) { animation: slideTextShow 20s infinite 12s; }
+    h3.slide-text:nth-child(10) { animation: slideTextShow 20s infinite 16s; }
+
+    /* Custom animation for text to match slides */
+    @keyframes slideTextShow {
+        0% { opacity: 0; }
+        5% { opacity: 1; } /* Fade in with slide */
+        15% { opacity: 1; } /* Hold with slide */
+        20% { opacity: 0; } /* Fade out slightly earlier than slide */
+        100% { opacity: 0; }
+    }
+
+    /* Ensure slides sync correctly */
+    .slides1, .slides2, .slides3, .slides4, .slides5 {
+        animation: slideShow 20s infinite;
+    }
+    .slides1:nth-child(1) { animation-delay: 0s; }
+    .slides2:nth-child(2) { animation-delay: 4s; }
+    .slides3:nth-child(3) { animation-delay: 8s; }
+    .slides4:nth-child(4) { animation-delay: 12s; }
+    .slides5:nth-child(5) { animation-delay: 16s; }
+
+    .des {
+        font-size: 0.8rem;
+    }
+
+    .movietitle {
+        font-size: 24px;
+    }
+    .movietitle3{
+        font-size: 24px;
+        position: relative;
+        left:10px;
+    }
+    .movietitle1{
+        font-size:34px;
+    }
+
+    .headmain {
+        font-size: 20px;
+    }
+    .headmain3{
+        font-size: 20px;
+        position: relative;
+        left:22px;
+        bottom:85px;
+    }
+    .nextpara {
+        font-size: 11px;
+    }
+
+    .headmain2 {
+        font-size: 11px;
+        padding: 6px 12px;
+    }
+    .headmain0, .headmain00, .headmain011, .headmain0111 {
+        font-size: 13px;
+        position: relative;
+        bottom:115px;
+        left:20px;
+    }
+
+    .box1 {
+        margin: 20px;
+        position: relative;
+        bottom: 80px;
+        width: 180px; /* Set width to 150px */
+        flex: 0 0 180px; /* Enforce width in flex context: no grow, no shrink, basis 150px */
+        max-width: 180px; /* Ensure it doesn't exceed 150px */
+        min-width: 0; /* Allow shrinking below content size if needed */
+    }
+
+    .img1 {
+        height: 250px;
+        width: 100%; /* Fill the .box1 width */
+        object-fit: cover;
+    }
+
+    .movietitle1, .movietitle10 {
+        font-size: 28px;
+        position: relative;
+        bottom:80px;
+    }
+
+    .headmain1, .headmain10 {
+        font-size: 20px;
+        position: relative;
+        bottom:120px;
+    }
+    .headmain2{
+        position: relative;
+        left:270px;
+        bottom:192px;
+    }
+    .headmain{
+        position: relative;
+        bottom:85px;
+        left:12px;
+    }
+
+    .nextpara2 {
+        font-size: 11px;
+    }
+
+    .about1, .about, .about12 {
+        font-size: 14px;
+        width:100%;
+        position: relative;
+        left:10px;
+    }
+
+    .extra {
+        font-size: 18px;
+        position: relative;
+        left:28px;
+    }
+
+    .aboutline {
+        font-size: 24px;
+        position: relative;
+        left:20px;
+        bottom:15px;
+    }
+
+    button {
+        padding: 8px;
+        font-size: 12px;
     }
 }

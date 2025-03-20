@@ -13,14 +13,20 @@ html, body {
 }
 
 .container {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #000;
+    min-height: 100vh;
 }
 
 .header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     background: #000;
+    opacity: 0.9;
     height: 60px;
     z-index: 1000;
     position: fixed;
@@ -34,55 +40,41 @@ html, body {
     background-color: rgba(0, 0, 0, 0.9);
 }
 
+.logo {
+    height: 200px;
+    width: auto;
+    margin-left:-30px;
+}
+
 .hello {
-    position: relative;
-    text-align: right;
+    display: flex;
+    align-items: center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     letter-spacing: 0.1rem;
-    float: right;
-    left: 70px;
-    top: 10px;
 }
 
-.insta {
+.hello ul {
+    display: flex;
+    list-style: none;
+}
+
+.hello li {
+    padding: 0 15px;
     position: relative;
-    height: 24px;
-    width: 24px;
-    top: -60px;
-    left: 250px;
+    right: 180px;
+    margin:10px;
+    letter-spacing: 0.2rem;
 }
 
-.whatsapp {
-    position: relative;
-    height: 35px;
-    width: 35px;
-    top: -55px;
-    left: 270px;
-}
-
-.gmail {
-    position: relative;
-    height: 27px;
-    width: 27px;
-    top: -59px;
-    left: 288px;
-}
-
-li {
-    display: inline-block;
-    padding: 20px 20px 20px 20px;
-}
-
-li a {
-    position: relative;
+.hello li a {
     text-decoration: none;
     color: white;
     padding: 5px 0;
     transition: color 0.3s ease-in-out;
 }
 
-li a::before {
+.hello li a::before {
     content: "";
     position: absolute;
     top: -5px;
@@ -94,12 +86,43 @@ li a::before {
     transition: opacity 0.3s ease-in-out;
 }
 
-li a:hover {
+.hello li a:hover {
     color: red;
 }
 
-li a:hover::before {
+.hello li a:hover::before {
     opacity: 1;
+}
+
+.insta, .whatsapp, .gmail {
+    height: 24px;
+    width: 24px;
+    margin: 0 10px;
+    position: relative;
+    right:20px;
+}
+
+/* Slider Section */
+/* Slider Section */
+.row {
+    display: flex;
+    flex-direction: column; /* Stack the slider and text vertically */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 60px;
+    position: relative; /* Make .row the positioning context for the h3 elements */
+}
+
+/* Replace row and row2 with a single movie-container for vertical stacking */
+.movie-container {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Stack boxes vertically */
+    align-items: center; /* Center boxes horizontally */
+    width: 100%;
+    margin-top: 150px; /* Space from the title */
+    padding: 0 20px; /* Side padding */
 }
 
 .box1 {
@@ -107,9 +130,10 @@ li a:hover::before {
     width: 250px;
     height: 320px;
     padding: 10px;
-    margin: 30px;
+    margin: 25px 0; /* Vertical margin only */
     border-radius: 10px;
     box-shadow: 0px 2px 10px 2px white;
+    top:100px;
 }
 
 .img1 {
@@ -140,28 +164,6 @@ button {
 
 button:hover {
     background-color: red;
-}
-
-.row {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin: 0;
-    border-radius: 20px;
-    height: 400px;
-    padding: 0 50px;
-}
-
-.row2 {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 150px;
-    border-radius: 20px;
-    height: 400px;
-    padding: 0 50px;
 }
 
 .movietitle {
@@ -249,4 +251,159 @@ ol li {
 .title1 {
     position: relative;
     top: 120px;
+}
+
+@media (min-width: 1259px) {
+    .slider {
+        max-width: 1200px;
+    }
+
+    .box1 {
+        max-width: 350px;
+    }
+
+    .movie-container {
+        max-width: 1400px;
+        margin: 60px auto;
+    }
+}
+
+/* Media Query for Phones (max-width: 768px) */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: row; /* Keep horizontal layout */
+        flex-wrap: nowrap; /* Prevent wrapping of header elements */
+        height: 60px; /* Reduce height for mobile */
+        padding: 5px; /* Reduce padding */
+        overflow-x: hidden; /* Prevent unwanted scrolling */
+        align-items: center; /* Vertically center items */
+        justify-content: space-between; /* Distribute space between items */
+    }
+
+    .logo {
+        height: 100px; /* Reduce logo size to save space */
+        width: auto;
+        margin: 0 3px; /* Reduce margin */
+        position: static; /* Remove relative positioning */
+    }
+
+    .hello {
+        flex-direction: row; /* Keep horizontal */
+        font-size: 10px; /* Reduce font size to fit */
+        margin: 0 3px; /* Reduce margin */
+        display: flex; /* Ensure the container is a flex container */
+        align-items: center; /* Vertically center the list */
+        flex-grow: 1; /* Allow .hello to take available space */
+    }
+
+    .hello ul {
+        flex-direction: row; /* Keep menu items horizontal */
+        flex-wrap: wrap; /* Allow wrapping if necessary to prevent overflow */
+        padding: 0;
+        margin: 0;
+        display: flex; /* Ensure ul is a flex container */
+        width: 300px; /* Ensure ul takes full width of .hello */
+        position: relative;
+        right: 70px;
+        bottom: 10px;   
+    }
+
+    .hello li {
+        padding: 3px; /* Reduce padding to save space */
+        margin: 0 1px; /* Reduce margin between items */
+        position: static; /* Remove relative positioning */
+    }
+
+    .hello li a {
+        font-size: 10px; /* Further reduce font size to fit */
+    }
+
+    .insta, .whatsapp, .gmail {
+        height: 12px; /* Reduce icon size to save space */
+        width: 12px;
+        margin: 0 2px; /* Reduce margin */
+        position: static; /* Remove relative positioning */
+    }
+
+    .header > * {
+        flex-shrink: 1; /* Allow elements to shrink to fit */
+    }
+
+    .movie-container {
+        margin-top: 100px; /* Adjust margin to account for taller header */
+        padding: 0 10px; /* Reduce padding */
+    }
+
+    .box1 {
+        margin: 20px 0; /* Vertical margin only */
+        width: 200px; /* Match the screenshot width */
+        height: auto; /* Adjust height based on content */
+        padding: 5px;
+        flex: 0 0 200px; /* Enforce width in flex context */
+        max-width: 200px; /* Ensure it doesn't exceed 200px */
+        min-width: 0; /* Allow shrinking if needed */
+    }
+
+    .img1 {
+        height: 200px; /* Match the screenshot height */
+        width: 100%; /* Fill the .box1 width */
+        object-fit: cover;
+    }
+
+    button {
+        left: 0; /* Reset positioning */
+        bottom: 0;
+        width: 100%; /* Adjust width to fit .box1 */
+        padding: 8px; /* Smaller padding */
+        font-size: 12px; /* Smaller font */
+    }
+
+    .movietitle {
+        font-size: 24px; /* Smaller title */
+        right: 10px; /* Adjust margin */
+        top: -20px;
+        position: relative;
+    }
+
+    .headmain {
+        font-size: 20px; /* Smaller heading */
+        right: 20px; /* Adjust margin */
+        top: -7px;
+        position: relative;
+    }
+
+    .headmain2 {
+        font-size: 11px; /* Smaller button text */
+        left: 150px; /* Reset positioning */
+        top: -130px;
+        width: 20%; /* Adjust width */
+        padding: 6px 12px; /* Smaller padding */
+        margin: 10px auto; /* Center the button */
+        display: block; /* Ensure it takes its own line */
+        position: relative;
+    }
+
+    .nextpara {
+        font-size: 12px; /* Smaller text */
+        width: 90%;
+        left: 20px; /* Adjust positioning */
+        top: 5px;
+    }
+
+    footer {
+        flex-direction: column; /* Stack footer items vertically */
+        height: auto; /* Adjust height */
+        padding: 10px;
+    }
+
+    .foot {
+        top: 0;
+        left: 0;
+        text-align: center; /* Center text */
+    }
+
+    footer ol li {
+        left: 0; /* Reset positioning */
+        padding: 5px 0; /* Vertical padding */
+    }
 }
