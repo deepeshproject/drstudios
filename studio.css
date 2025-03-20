@@ -51,7 +51,6 @@ html, body {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 0 20px;
     transition: background-color 0.2s ease-in-out;
 }
 
@@ -60,9 +59,9 @@ html, body {
 }
 
 .logo {
-    height: 50px;
+    height: 200px;
     width: auto;
-    margin-left: 20px;
+    margin-left:-30px;
 }
 
 .hello {
@@ -80,6 +79,10 @@ html, body {
 
 .hello li {
     padding: 0 15px;
+    position: relative;
+    right: 180px;
+    margin:10px;
+    letter-spacing: 0.2rem;
 }
 
 .hello li a {
@@ -113,15 +116,20 @@ html, body {
     height: 24px;
     width: 24px;
     margin: 0 10px;
+    position: relative;
+    right:20px;
 }
 
 /* Slider Section */
+/* Slider Section */
 .row {
     display: flex;
+    flex-direction: column; /* Stack the slider and text vertically */
     justify-content: center;
     align-items: center;
-    height: 70vh;
+    height: 90vh;
     margin-top: 60px;
+    position: relative; /* Make .row the positioning context for the h3 elements */
 }
 
 .slider {
@@ -129,18 +137,17 @@ html, body {
     width: 90%;
     max-width: 1200px;
     height: 60vh;
-    margin: 0 auto;
     border-radius: 10px;
-    overflow: hidden;
 }
 
 .slides1, .slides2, .slides3, .slides4, .slides5 {
     position: absolute;
-    width: 100%;
+    right: 170px;
+    width: 70%;
     height: 100%;
-    object-fit: cover;
     opacity: 0;
     animation: slideShow 20s infinite;
+    z-index: 1; /* Ensure slides are below the active slide */
 }
 
 .slides1:nth-child(1), h3:nth-child(6) { animation-delay: 0s; }
@@ -150,9 +157,10 @@ html, body {
 .slides5:nth-child(5), h3:nth-child(10) { animation-delay: 16s; }
 
 h3.slide-text {
-    position: absolute;
-    bottom: 20px;
+    position: absolute; /* Use absolute positioning to place all h3 elements in the same spot */
+    top: calc(60vh + 0px); /* Position below the slider (60vh height + 20px gap) */
     left: 50%;
+    margin:10px;
     transform: translateX(-50%);
     color: white;
     font-size: 1.5rem;
@@ -162,7 +170,17 @@ h3.slide-text {
     animation: slideShow 20s infinite;
     text-align: center;
     width: 90%;
+    max-width: 1200px; /* Match the slider width */
+    z-index: 2; /* Ensure text is above the slides */
+    display: none; /* Hide by default */
 }
+
+/* Show the h3 text only when its animation is active */
+h3.slide-text:nth-child(6) { animation-delay: 0s; display: block; }
+h3.slide-text:nth-child(7) { animation-delay: 4s; display: block; }
+h3.slide-text:nth-child(8) { animation-delay: 8s; display: block; }
+h3.slide-text:nth-child(9) { animation-delay: 12s; display: block; }
+h3.slide-text:nth-child(10) { animation-delay: 16s; display: block; }
 
 .des {
     width: 100%;
@@ -175,11 +193,11 @@ h3 a {
 }
 
 @keyframes slideShow {
-    0% { opacity: 0; }
-    5% { opacity: 1; }
-    15% { opacity: 1; }
-    30% { opacity: 0; }
-    100% { opacity: 0; }
+    0% { opacity: 0; z-index: 1; }
+    5% { opacity: 1; z-index: 2; } /* Fade in and bring to front */
+    15% { opacity: 1; z-index: 2; } /* Hold */
+    30% { opacity: 0; z-index: 1; } /* Fade out and send to back */
+    100% { opacity: 0; z-index: 1; } /* Ensure reset */
 }
 
 /* Movies Section */
