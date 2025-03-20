@@ -127,7 +127,7 @@ html, body {
     flex-direction: column; /* Stack the slider and text vertically */
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 100vh;
     margin-top: 60px;
     position: relative; /* Make .row the positioning context for the h3 elements */
 }
