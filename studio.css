@@ -469,7 +469,7 @@ footer ol li a {
 /* Existing CSS remains unchanged until the media query */
 
 /* Media Query for Phones (max-width: 600px) */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .header {
         flex-direction: row; /* Keep horizontal layout */
         flex-wrap: nowrap; /* Prevent wrapping */

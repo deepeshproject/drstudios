@@ -118,7 +118,7 @@ html, body {
     width: 250px;
     height: 320px;
     padding: 10px;
-    margin: 10px 0; /* Reduced vertical margin to decrease gap */
+    margin: 30px 0; /* Reduced vertical margin to decrease gap */
     border-radius: 10px;
     box-shadow: 0px 2px 10px 2px white;
     top: 100px;
@@ -129,7 +129,7 @@ html, body {
     height: 300px;
     object-fit: cover;
     border-radius: 10px;
-    
+
 }
 
 button {
