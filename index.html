@@ -1,156 +1,633 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DR STUDIOS - Home</title>
-    <link rel="icon" class="icon" type="image/png" href="images/drlogo1.png">
-    <link rel="stylesheet" href="studio.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div id="preloader">
-        <video autoplay muted>
-            <source src="images/previd.mp4" type="video/mp4">
-        </video>
-    </div>
-    
-    <div class="container">
-        <div class="header">
-            <img src="images/drlogo1.png" class="logo">
-            <div class="hello">
-               <ul>
-                <li><a href="#home">HOME</a></li>
-                <li><a href="#movies">MOVIES</a></li>
-                <li><a href="#about">ABOUT</a></li>
-                <li><a href="#awards">ACHIEVEMENTS</a></li>
-                <li><a href="contact.html" target="_blank">CONTACT</a></li>
-            </ul> 
-            <a href="https://www.instagram.com/dr____studios?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><img src="images/instagram.png" class="insta" href="@"></a>
-            <a href="https://wa.me/9014979908?text=Hi" target="_blank"><img src="images/whatsapp.png" class="whatsapp"></a>
-            <a href="https://www.youtube.com/@danushraghavendardrstudios9005" target="_blank"><img src="images/youtube.png" class="gmail"></a>
-            </div> 
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DR Studios - Where Vision Meets Precision</title>
+        
+        <!-- Bootstrap 5 CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+        
+        <!-- Bootstrap Icons -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+        
+        <style>
+            :root {
+                --neon-red: #ff1a1a;
+                --dark-red: #cc0000;
+                --pure-black: #000000;
+                --dark-gray: #111111;
+                --light-gray: #333333;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background: var(--pure-black);
+                color: #ffffff;
+                font-family: 'Rajdhani', sans-serif;
+                overflow-x: hidden;
+            }
+
+            /* Neon Text Effects */
+            .neon-text {
+                color: var(--neon-red);
+                text-shadow: 
+                    0 0 5px var(--neon-red),
+                    0 0 10px var(--neon-red),
+                    0 0 15px var(--neon-red),
+                    0 0 20px var(--neon-red);
+            }
+
+            .neon-glow {
+                box-shadow: 
+                    0 0 10px var(--neon-red),
+                    0 0 20px var(--neon-red),
+                    0 0 30px var(--neon-red);
+                border: 1px solid var(--neon-red);
+            }
+
+            /* Hero Section */
+            .hero-section {
+                height: 100vh;
+                background: linear-gradient(135deg, var(--pure-black) 0%, var(--dark-gray) 50%, var(--dark-red) 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+                
+
+            }
+
+            .hero-title {
+                font-family: 'Orbitron', monospace;
+                font-size: 5rem;
+                /* background-image:url(photos/drlogo1.png); */
+                font-weight: 800;
+                margin-bottom: 1rem;
+                color: #000;
+                animation: pulse-glow 2s ease-in-out infinite alternate;
+            }
+
+            .hero-tagline {
+                font-size: 1.5rem;
+                font-weight: 300;
+                opacity: 0.9;
+                animation: fade-in 3s ease-in;
+            }
+
+            @keyframes pulse-glow {
+                from {
+                    text-shadow: 
+                        0 0 5px var(--neon-red),
+                        0 0 10px var(--neon-red),
+                        0 0 15px var(--neon-red),
+                        0 0 20px var(--neon-red);
+                }
+                to {
+                    text-shadow: 
+                        0 0 10px var(--neon-red),
+                        0 0 20px var(--neon-red),
+                        0 0 30px var(--neon-red),
+                        0 0 40px var(--neon-red);
+                }
+            }
+
+            @keyframes fade-in {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 0.9; transform: translateY(0); }
+            }
+
+            /* Section Styling */
+            .section {
+                padding: 80px 0;
+                background: var(--pure-black);
+            }
+
+            .section-title {
+                font-family: 'Orbitron', monospace;
+                font-size: 2.5rem;
+                font-weight: 700;
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+
+            /* Posters Gallery */
+            .poster-item {
+                margin-bottom: 2rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .poster-img {
+                width: 100%;
+                height: 500px;
+                object-fit: cover;
+                border-radius: 10px;
+                transition: all 0.3s ease;
+                border: 2px solid transparent;
+            }
+            
+
+            .poster-item:hover .poster-img {
+                border-color: var(--neon-red);
+                box-shadow: 
+                    0 0 20px var(--neon-red),
+                    0 0 40px var(--neon-red);
+                transform: scale(1.05);
+            }
+
+            /* Awards Section */
+            .award-item {
+                background: var(--dark-gray);
+                border: 2px solid var(--neon-red);
+                border-radius: 10px;
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 0 10px rgba(255, 26, 26, 0.3);
+            }
+
+            .award-item:hover {
+                box-shadow: 
+                    0 0 20px var(--neon-red),
+                    0 0 30px var(--neon-red);
+                transform: translateY(-5px);
+            }
+
+            .award-icon {
+                font-size: 2rem;
+                color: var(--neon-red);
+                margin-right: 1rem;
+            }
+
+            /* Technical Capabilities */
+            .capability-card {
+                background: var(--dark-gray);
+                border: 2px solid var(--neon-red);
+                border-radius: 15px;
+                padding: 2rem;
+                margin-bottom: 2rem;
+                transition: all 0.3s ease;
+                height: 100%;
+                box-shadow: 0 0 10px rgba(255, 26, 26, 0.2);
+            }
+
+            .capability-card:hover {
+                transform: scale(1.05);
+                box-shadow: 
+                    0 0 25px var(--neon-red),
+                    0 0 50px var(--neon-red);
+            }
+
+            .capability-icon {
+                font-size: 3rem;
+                color: var(--neon-red);
+                margin-bottom: 1rem;
+                text-align: center;
+                display: block;
+            }
+
+            /* Contact Form */
+            .contact-form {
+                background: var(--dark-gray);
+                padding: 3rem;
+                border-radius: 15px;
+                border: 2px solid var(--neon-red);
+                box-shadow: 0 0 20px rgba(255, 26, 26, 0.3);
+            }
+
+            .form-control {
+                background: var(--pure-black);
+                border: 2px solid var(--light-gray);
+                color: #ffffff;
+                border-radius: 8px;
+                padding: 12px;
+                transition: all 0.3s ease;
+            }
+            /* #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 1s ease-out;
+        z-index: 9999;
+    } */
+    .log{
+        width:100px;
+        height:130px;
+        margin-bottom:490px;
+    }
+
+    /* #preloader video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    } */
+            .form-control:focus {
+                background: var(--pure-black);
+                border-color: var(--neon-red);
+                color: #ffffff;
+                box-shadow: 
+                    0 0 10px var(--neon-red),
+                    0 0 20px rgba(255, 26, 26, 0.3);
+            }
+
+            .btn-neon {
+                background: transparent;
+                border: 2px solid var(--neon-red);
+                color: var(--neon-red);
+                padding: 12px 30px;
+                border-radius: 8px;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .btn-neon:hover {
+                background: var(--neon-red);
+                color: var(--pure-black);
+                box-shadow: 
+                    0 0 20px var(--neon-red),
+                    0 0 40px var(--neon-red);
+                transform: translateY(-2px);
+            }
+
+            /* Footer */
+            .footer {
+                background: var(--pure-black);
+                border-top: 2px solid var(--neon-red);
+                padding: 2rem 0;
+                text-align: center;
+                box-shadow: 0 -5px 20px rgba(255, 26, 26, 0.3);
+            }
+
+            /* Modal Styling */
+            .modal-content {
+                background: var(--dark-gray);
+                border: 2px solid var(--neon-red);
+                border-radius: 15px;
+            }
+
+            .modal-header {
+                border-bottom: 1px solid var(--neon-red);
+            }
+
+            .btn-close {
+                filter: invert(1);
+            }
+
+            /* Responsive Design */
+            @media (max-width: 768px) {
+                .hero-title {
+                    font-size: 3rem;
+                }
+                
+                .hero-tagline {
+                    font-size: 1.2rem;
+                }
+                
+                .section-title {
+                    font-size: 2rem;
+                }
+                
+                .poster-img {
+                    height: 300px;
+                }
+            }
+
+            /* Scrollbar Styling */
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: var(--pure-black);
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: var(--neon-red);
+                border-radius: 4px;
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: var(--dark-red);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="preloader">
+            <video autoplay muted>
+                <source src="photod/previd.mp4" type="video/mp4">
+            </video>
         </div>
-        <section id="home">
-            <div class="row">
-                <div class="slider">
-                    <img src="images/coinfinal.png" class="slides1">
-                    <img src="images/dreadfinal.jpg" class="slides2">
-                    <img src="images/wagerfinal.jpg" class="slides3">
-                    <img src="images/switchfinal.jpg" class="slides4">
-                    <img src="images/9333final.png" class="slides5">      
-                    <h3 class="slide-text"><p><i class="fa-solid fa-video" style="color: red;"></i> The Coin | Drama</p><p class="des"><i class="fa-solid fa-ticket" style="color: red;"></i> A story of a friend who faces betrayal at the hands of his best friend.</p><a href="https://www.youtube.com/watch?v=X6GAn27ah5g" target="_blank"><i class="fa-solid fa-circle-play" style="color: red;"></i> Visit the channel</a></h3>
-                    <h3 class="slide-text"><p><i class="fa-solid fa-video" style="color: red;"></i> Dread | Horror</p><p class="des"><i class="fa-solid fa-ticket" style="color: red;"></i> The vengeance of a soul lost in a tragic accident.</p><a href="https://www.youtube.com/watch?v=Hz_3HUsYzZ8" target="_blank"><i class="fa-solid fa-circle-play" style="color: red;"></i> Visit the channel</a></h3>
-                    <h3 class="slide-text"><p><i class="fa-solid fa-video" style="color: red;"></i> Wager | Action</p><p class="des"><i class="fa-solid fa-ticket" style="color: red;"></i> A tale of a bounty hunter on a deadly mission to eliminate his target.</p><a href="https://www.youtube.com/watch?v=Wmmg3dk-FTE" target="_blank"><i class="fa-solid fa-circle-play" style="color: red;"></i> Visit the channel</a></h3>
-                    <h3 class="slide-text"><p><i class="fa-solid fa-video" style="color: red;"></i> Switch | Action Thriller</p><p class="des"><i class="fa-solid fa-ticket" style="color: red;"></i> The tale of a person who acquires superpowers from a mysterious doll.</p><a href="###" target="_blank"><i class="fa-solid fa-circle-play" style="color: red;"></i> Visit the channel</a></h3>
-                    <h3 class="slide-text"><p><i class="fa-solid fa-video" style="color: red;"></i> 9333 | Action Drama</p><p class="des"><i class="fa-solid fa-ticket" style="color: red;"></i> A group of friends fun night spirals into unexpected chaos.</p><a href="https://www.youtube.com/@danushraghavendardrstudios9005" target="_blank"><i class="fa-solid fa-circle-play" style="color: red;"></i> Visit the channel</a></h3>
+        <!-- Hero Section -->
+        <section class="hero-section">
+             <div class="logo">
+            <img src="photos/drlogo1.png" class="log">
+        </div>
+            <div class="container">
+                <h1 class="hero-title neon-text">DR STUDIOS</h1>
+                <p class="hero-tagline neon-text">Where Vision Meets Precision</p>
+            </div>
+        </section>
+
+        <!-- Posters Gallery -->
+<section class="section" id="gallery">
+    <div class="container">
+        <h2 class="section-title neon-text">Our Work</h2>
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="poster-item" data-link="https://www.youtube.com/watch?v=Wmmg3dk-FTE" data-title="Neon Dreams">
+                    <img src="photos/wager.jpg" alt="Movie Poster 1" class="poster-img">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="poster-item" data-link="https://www.youtube.com/@danushraghavendardrstudios9005" data-title="Cyber Revolution">
+                    <img src="photos/switch.png" alt="Movie Poster 2" class="poster-img">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="poster-item" data-link="https://www.youtube.com/watch?v=Hz_3HUsYzZ8" data-title="Digital Horizon">
+                    <img src="photos/dreadfinal.jpg" alt="Movie Poster 3" class="poster-img">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="poster-item" data-link="https://www.youtube.com/watch?v=X6GAn27ah5g" data-title="Shadow Protocol">
+                    <img src="photos/coin.jpg" alt="Movie Poster 4" class="poster-img">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="poster-item" data-link="https://www.youtube.com/watch?v=5t_icDf2yQ0" data-title="Red Matrix">
+                    <img src="photos/9333.png" alt="Movie Poster 5" class="poster-img">
+                </div>
+            </div>
+
+                    <!-- <div class="col-lg-4 col-md-6">
+                        <div class="poster-item" data-bs-toggle="modal" data-bs-target="#posterModal" data-poster="/placeholder.svg?height=600&width=400" data-title="Future Noir">
+                            <img src="/placeholder.svg?height=400&width=300" alt="Movie Poster 6" class="poster-img">
+                        </div>
+                    </div> -->
                 </div>
             </div>
         </section>
-        <hr>
-        <section id="movies">
-        <div class="row2">
-            <div>
-                <h1 class="movietitle">|</h1> <h2 class="headmain">MOVIES</h2>
-                <br />
-                <p class="nextpara">Rooted in the world of storytelling, DR Studios offers a vibrant space for filmmaking across different genres. With five films produced, we are dedicated to storytelling, innovation, and artistic excellence. Whether you're a film enthusiast or a creative collaborator, we strive to make every project special.</p>
-                <a href="allmovies.html" class="all"><h2 class="headmain2">VIEW ALL -></h2></a>
+
+        <!-- Awards Section -->
+        <section class="section" id="awards">
+            <div class="container">
+                <h2 class="section-title neon-text">Awards & Recognition</h2>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="award-item">
+                            <i class="bi bi-trophy-fill award-icon"></i>
+                            <strong>Best Cinematography</strong> - International Film Festival 2024
+                        </div>
+                        <div class="award-item">
+                            <i class="bi bi-award-fill award-icon"></i>
+                            <strong>Best Editing</strong> - Digital Arts Awards 2024
+                        </div>
+                        <div class="award-item">
+                            <i class="bi bi-star-fill award-icon"></i>
+                            <strong>Outstanding Color Grading</strong> - Post-Production Guild 2023
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="award-item">
+                            <i class="bi bi-gem award-icon"></i>
+                            <strong>Innovation in Sound Design</strong> - Audio Excellence Awards 2024
+                        </div>
+                        <div class="award-item">
+                            <i class="bi bi-lightning-fill award-icon"></i>
+                            <strong>Technical Achievement</strong> - Creative Industry Awards 2023
+                        </div>
+                        <div class="award-item">
+                            <i class="bi bi-camera-reels-fill award-icon"></i>
+                            <strong>Best Short Film</strong> - Underground Cinema Festival 2023
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="box1">
-                <img src="images/coin.jpg" class="img1" style="border-radius: 10px;">
-                <button onclick="window.open('https://www.youtube.com/watch?v=X6GAn27ah5g', '_blank')">Watch Now</button>
-            </div>
-            <div class="box1">
-                <img src="images/switch.png" class="img1" style="border-radius: 10px;">
-                <button onclick="window.open('https://www.youtube.com/results?search_query=danush+raghavender', '_blank')">Watch Now</button>
-            </div>
-            <div class="box1">
-                <img src="images/wager.jpg" class="img1" style="border-radius: 10px;">
-                <button onclick="window.open('https://www.youtube.com/watch?v=Wmmg3dk-FTE', '_blank')">Watch Now</button>
-            </div>
-        </div>
-        </section>  
-        <hr>
-        <section id="awards">
-        <div class="row3">
-            <div>
-                <h1 class="movietitle">|</h1> <h2 class="headmain">AWARDS</h2>
-                <br />
-                <p class="nextpara2">Nestled in the heart of creativity, DR Studios offers a dynamic space for filmmaking, storytelling, and artistic expression. With five films produced and six awards won, we are committed to excellence and innovation. Whether you're a film enthusiast or a creative collaborator, we strive to make every project special.</p>
-            </div>
-            <div class="awards">
-            <h1 class="movietitle1">|</h1> <h1 class="headmain1">WAGER</h1><h1 class="headmain0">BEST FILM (VNR)</h1>
-            <h1 class="movietitle1">|</h1> <h1 class="headmain1">THE COIN</h1><h1 class="headmain00">BEST FILM (GRIET)</h1>
-            <h1 class="movietitle1">|</h1> <h1 class="headmain1">WAGER</h1><h1 class="headmain0">BEST EDITOR (VNR)</h1>
-            </div>
-            <div class="awards2">
-            <h1 class="movietitle10">|</h1> <h1 class="headmain10">SWITCH</h1><h1 class="headmain011">BEST DOP (VNR)</h1>
-            <h1 class="movietitle10">|</h1> <h1 class="headmain10">SWITCH</h1><h1 class="headmain011">BEST EDITOR (VNR)</h1>
-            <h1 class="movietitle10">|</h1> <h1 class="headmain10">THE COIN</h1><h1 class="headmain0111">BEST ACTOR (GRIET)</h1>
-            </div>
-        </div>
         </section>
-        <hr>
-        <section id="about">
-        <div class="row2">
-            <div>
-                <h1 class="movietitle3">|</h1> <h2 class="headmain3">ABOUT</h2>
-                <br />
-                <p class="about1">DR studios' dedication to quality and originality has been recognized with six prestigious awards, further cementing its reputation in the industry. Every project undertaken by DR Studios reflects a passion for storytelling, bringing unique perspectives to life through immersive cinematography and creative direction. As it continues to evolve, the studio remains committed to producing impactful films that inspire, entertain, and leave a lasting impression on viewers worldwide.</p>
-                <br />
-                <h1 class="aboutline">|</h1><p class="extra">The History of DRS</p><p class="about12">DR Studios, established in 2021, is a dynamic production house that thrives on the art of storytelling, blending creativity, innovation, and cinematic excellence. Created by Danush Raghavendar and a team of passionate filmmakers, the studio has a strong vision for crafting compelling narratives that captivate audiences. With a commitment to visual artistry and engaging storytelling, DR Studios has produced five films, each reflecting its dedication to quality and originality.</p>  
+
+        <!-- Technical Capabilities -->
+        <section class="section" id="capabilities">
+            <div class="container">
+                <h2 class="section-title neon-text">Technical Capabilities</h2>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="capability-card text-center">
+                            <i class="bi bi-camera-video capability-icon"></i>
+                            <h4>Cinematography</h4>
+                            <p>Professional camera work with cutting-edge equipment and techniques</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="capability-card text-center">
+                            <i class="bi bi-palette capability-icon"></i>
+                            <h4>Color Grading</h4>
+                            <p>Advanced color correction and grading for cinematic excellence</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="capability-card text-center">
+                            <i class="bi bi-soundwave capability-icon"></i>
+                            <h4>Sound Design</h4>
+                            <p>Immersive audio experiences and professional sound engineering</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="capability-card text-center">
+                            <i class="bi bi-magic capability-icon"></i>
+                            <h4>VFX/Post</h4>
+                            <p>State-of-the-art visual effects and post-production services</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section" id="contact">
+            <div class="container">
+                <h2 class="section-title neon-text">Get In Touch</h2>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <form class="contact-form" id="contactForm">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-neon">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2025 DR Studios. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <!-- Poster Modal -->
+        <div class="modal fade" id="posterModal" tabindex="-1" aria-labelledby="posterModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title neon-text" id="posterModalLabel">Poster Title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img src="/placeholder.svg" alt="Poster" class="img-fluid" id="modalPosterImg">
+                    </div>
+                </div>
             </div>
         </div>
-        </section>  
-        <hr>
-        <footer>
-            <p class="foot">@All Rights Reserved.</p>
-             <ol>
-                <li><a href="#home">Contact Us</a></li>
-                <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=drstudiosofficial19@gmail.com&su=My%20Work&body=Mention%20Your%20Work%20To%20Contact%20Us" target="_blank">Email Us</a></li>
-                <li><a href="https://www.instagram.com/dr____studios?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a></li>
-            </ol> 
-        </footer>
-    </div>
-    <script>
-        // Preloader script
-        setTimeout(() => {
-            const preloader = document.getElementById("preloader");
-            const container = document.querySelector(".container");
-    
-            if (preloader) {
-                preloader.style.opacity = "0";
-                setTimeout(() => {
-                    preloader.style.display = "none";
-                    if (container) {
-                        container.style.display = "block";
-                    }
-                }, 1000);
-            }
-        }, 1750);
 
-        // Basic slider functionality
-        let currentSlide = 0;
-        const slides = document.querySelectorAll(".slide");
-        const totalSlides = slides.length;
+        <!-- Bootstrap 5 JS -->
+       <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const posterItems = document.querySelectorAll('.poster-item');
 
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.style.display = i === index ? "block" : "none";
+        posterItems.forEach(item => {
+            item.addEventListener('click', function () {
+                const targetUrl = this.getAttribute('data-link');
+                if (targetUrl) {
+                    window.location.href = targetUrl; // Or use window.open(targetUrl, '_blank') to open in new tab
+                }
             });
-        }
+        });
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
+                
+                // Contact Form Handling
+                const contactForm = document.getElementById('contactForm');
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const message = document.getElementById('message').value;
+                    
+                    // Simple validation
+                    if (name && email && message) {
+                        alert('Thank you for your message! We will get back to you soon.');
+                        contactForm.reset();
+                    } else {
+                        alert('Please fill in all fields.');
+                    }
+                });
+                
+                // Smooth scrolling for internal links
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+                
+                // Add scroll effect to capability cards
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+                
+                const observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.animation = 'fade-in 1s ease-in forwards';
+                        }
+                    });
+                }, observerOptions);
+                
+                document.querySelectorAll('.capability-card, .award-item').forEach(card => {
+                    observer.observe(card);
+                });
+            });
+            
+            // Add flickering effect to random elements
+            function addFlickerEffect() {
+                const flickerElements = document.querySelectorAll('.neon-text');
+                const randomElement = flickerElements[Math.floor(Math.random() * flickerElements.length)];
+                
+                if (randomElement) {
+                    randomElement.style.animation = 'none';
+                    setTimeout(() => {
+                        randomElement.style.animation = 'pulse-glow 2s ease-in-out infinite alternate';
+                    }, 100);
+                }
+            }
+            
+            // Trigger flicker effect occasionally
+            setInterval(addFlickerEffect, 8000);
+        setTimeout(() => {
+                const preloader = document.getElementById("preloader");
+                const container = document.querySelector(".container");
+        
+                if (preloader) {
+                    preloader.style.opacity = "0";
+                    setTimeout(() => {
+                        preloader.style.display = "none";
+                        if (container) {
+                            container.style.display = "block";
+                        }
+                    }, 1000);
+                }
+            }, 1750);
+
+            // Basic slider functionality
+            let currentSlide = 0;
+            const slides = document.querySelectorAll(".slide");
+            const totalSlides = slides.length;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.style.display = i === index ? "block" : "none";
+                });
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                showSlide(currentSlide);
+            }
+
+            // Initialize slider
             showSlide(currentSlide);
-        }
-
-        // Initialize slider
-        showSlide(currentSlide);
-        setInterval(nextSlide, 5000); // Auto-slide every 5 seconds
-    </script>
-</body>
-</html>
+            setInterval(nextSlide, 5000); // Auto-slide every 5 seconds
+        </script>
+    </body>
+    </html>
