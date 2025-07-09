@@ -32,30 +32,47 @@
       height: auto;
     }
 
-     header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.05); /* Transparent white tint */
-  backdrop-filter: blur(6px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
-    .nav-with-logo {
-  display: flex;
-  align-items: center;
-  gap: 4rem;
-  flex-wrap: wrap;
-}
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(6px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
 
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+      flex-wrap: wrap;
+    }
+
+    .nav-logo img {
+      height: 40px;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 2rem;
+      background: none;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-with-logo {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
 
     .nav-with-logo a {
       color: #aaa;
@@ -65,28 +82,38 @@
     }
 
     .nav-with-logo a:hover {
-  color: crimson;
-  text-shadow: 0 0 10px crimson, 0 0 20px crimson;
-  text-decoration: overline;
-}
-
-
-    .nav-logo img {
-      height: 40px;
-      display: block;
-    }
-
-    nav a {
-      margin-left: 2rem;
-      color: #aaa;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s;
-    }
-
-    nav a:hover {
       color: crimson;
-      text-shadow: 0 0 10px red;
+      text-shadow: 0 0 10px crimson;
+      text-decoration: overline;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-with-logo {
+        display: none;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.95);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        text-align: center;
+        padding: 1rem 0;
+        border-top: 1px solid crimson;
+        z-index: 999;
+      }
+
+      .nav-with-logo a {
+        padding: 0.5rem 0;
+        font-size: 1.1rem;
+      }
+
+      .nav-with-logo.show {
+        display: flex;
+      }
     }
 
     section {
@@ -304,21 +331,24 @@
     </video>
   </div>
 
+  <!-- HEADER WITH HAMBURGER -->
   <header>
-    <nav class="nav-with-logo">
-      <a href="#about">About</a>
-      <a href="#films">Our Works</a>
-
+    <div class="nav-container">
       <span class="nav-logo">
         <img src="images/drlogo1.png" alt="Logo" />
       </span>
-
-      <a href="#awards">Awards</a>
-      <a href="#expertise">Expertise</a>
-      <a href="#contact">Contact</a>
-    </nav>
+      <button class="hamburger" id="hamburger">&#9776;</button>
+      <nav class="nav-with-logo" id="navMenu">
+        <a href="#about">About</a>
+        <a href="#films">Our Works</a>
+        <a href="#awards">Awards</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
       <h2>#DR7</h2>
@@ -326,63 +356,45 @@
     </div>
   </section>
 
+  <!-- ABOUT -->
   <section id="about">
     <h2 class="section-title">About Us</h2>
-    <p>DR Studios is a bold and visionary film production house known for crafting compelling cinematic experiences. With a track record of 6 powerful short films and 5 prestigious awards, we now set our sights on a new frontier — the feature film <strong>#DR7</strong>.</p>
+    <p>DR Studios is a bold and visionary film production house known for crafting compelling cinematic experiences...</p>
   </section>
 
+  <!-- FILMS -->
   <section id="films">
-  <h2 class="section-title">Our Works</h2>
-  <div class="poster-grid">
-    <div class="poster">
-      <a href="https://www.youtube.com/watch?v=5t_icDf2yQ0" target="_blank">
-        <img src="images/9333.png" alt="Film 1">
-      </a>
+    <h2 class="section-title">Our Works</h2>
+    <div class="poster-grid">
+      <div class="poster"><a href="#"><img src="images/9333.png" alt="Film 1"></a></div>
+      <div class="poster"><a href="#"><img src="images/coin.jpg" alt="Film 2"></a></div>
+      <div class="poster"><a href="#"><img src="images/dread.jpg" alt="Film 3"></a></div>
+      <div class="poster"><a href="#"><img src="images/switch.png" alt="Film 4"></a></div>
+      <div class="poster"><a href="#"><img src="images/wager.jpg" alt="Film 5"></a></div>
     </div>
-    <div class="poster">
-      <a href="https://www.youtube.com/watch?v=X6GAn27ah5g" target="_blank">
-        <img src="images/coin.jpg" alt="Film 2">
-      </a>
-    </div>
-    <div class="poster">
-      <a href="https://www.youtube.com/watch?v=X6GAn27ah5g&list=TLPQMDkwNzIwMjXbt2BRKDf5sg&index=1" target="_blank">
-        <img src="images/dread.jpg" alt="Film 3">
-      </a>
-    </div>
-    <div class="poster">
-      <a href="https://www.youtube.com/@danushraghavendardrstudios9005" target="_blank">
-        <img src="images/switch.png" alt="Film 4">
-      </a>
-    </div>
-    <div class="poster">
-      <a href="https://www.youtube.com/watch?v=Wmmg3dk-FTE" target="_blank">
-        <img src="images/wager.jpg" alt="Film 5">
-      </a>
-    </div>
-  </div>
-</section>
+  </section>
 
-
+  <!-- AWARDS -->
   <section id="awards">
     <h2 class="section-title">Awards</h2>
     <div class="grid">
-      <div class="card"><h3>🏆 IndieFest Winner</h3><p>Best Short Film – "Fragmented Truth"</p></div>
-      <div class="card"><h3>🎬 CineNow Awards</h3><p>Audience Choice – "The Unsaid"</p></div>
+      <div class="card"><h3>🏆 IndieFest</h3><p>Best Short Film – "Fragmented Truth"</p></div>
+      <div class="card"><h3>🎬 CineNow</h3><p>Audience Choice – "The Unsaid"</p></div>
       <div class="card"><h3>✂️ Frame Awards</h3><p>Best Editing – "Pulse"</p></div>
-      <div class="card"><h3>📝 ScriptCon</h3><p>Best Story – "Echoes"</p></div>
-      <div class="card"><h3>🎥 FilmForge</h3><p>Top Finalist – "Glass Souls"</p></div>
     </div>
   </section>
 
+  <!-- EXPERTISE -->
   <section id="expertise">
     <h2 class="section-title">Our Expertise</h2>
     <div class="grid">
-      <div class="card"><h3>✍️ Screenwriting</h3><p>We create layered characters and powerful arcs that anchor unforgettable scripts.</p></div>
-      <div class="card"><h3>📖 Storytelling</h3><p>Every project we take on is guided by a strong narrative heartbeat and emotional depth.</p></div>
-      <div class="card"><h3>🎞️ Editing</h3><p>Precision pacing and seamless transitions bring our stories to life on screen.</p></div>
+      <div class="card"><h3>✍️ Screenwriting</h3><p>Layered characters, powerful arcs...</p></div>
+      <div class="card"><h3>📖 Storytelling</h3><p>Strong narrative heartbeat...</p></div>
+      <div class="card"><h3>🎞️ Editing</h3><p>Precision pacing, transitions...</p></div>
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section id="contact">
     <h2 class="section-title">Get In Touch</h2>
     <div class="contact-card">
@@ -396,10 +408,12 @@
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     &copy; 2025 DR Studios — Crafted with passion for cinema.
   </footer>
 
+  <!-- JS -->
   <script>
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -415,6 +429,11 @@
       const p = document.getElementById('preloader');
       if (p) p.style.display = 'none';
     }, 5000);
+
+    // Hamburger Toggle
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('navMenu').classList.toggle('show');
+    });
   </script>
 
 </body>
