@@ -3,199 +3,419 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DR STUDIOS - Home</title>
-  <link rel="icon" type="image/png" href="images/drlogo1.png"/>
-  <link rel="stylesheet" href="studio.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <title>DR Studios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Preloader styles */
-    .container {
-      display: none;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.6;
     }
 
     #preloader {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
+      width: 100%;
       height: 100vh;
       background: black;
+      z-index: 2000;
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 9999;
-      overflow: hidden;
     }
 
     #preloader video {
+      width: 80%;
+      max-width: 600px;
+      height: auto;
+    }
+
+     header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.05); /* Transparent white tint */
+  backdrop-filter: blur(6px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+    .nav-with-logo {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+
+    .nav-with-logo a {
+      color: #aaa;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .nav-with-logo a:hover {
+  color: crimson;
+  text-shadow: 0 0 10px crimson, 0 0 20px crimson;
+  text-decoration: overline;
+}
+
+
+    .nav-logo img {
+      height: 40px;
+      display: block;
+    }
+
+    nav a {
+      margin-left: 2rem;
+      color: #aaa;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    nav a:hover {
+      color: crimson;
+      text-shadow: 0 0 10px red;
+    }
+
+    section {
+      padding: 120px 30px 80px;
+      min-height: 100vh;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: crimson;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 10px crimson;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1517602302552-471fe67acf66?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(2px);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      color: white;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .hero h2 {
+      font-size: 4rem;
+      color: crimson;
+      text-shadow: 0 0 20px red;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      color: #eee;
+      margin-top: 1rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .poster-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+      justify-items: center;
+      margin-top: 2rem;
+    }
+
+    .poster {
+      position: relative;
+      width: 100%;
+      padding-top: 177.78%;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 0 10px crimson;
+      background-color: #111;
+      transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease-out;
+    }
+
+    .poster.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .poster img {
+      position: absolute;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 16px;
     }
 
-    .fade-out {
-      opacity: 0;
-      transition: opacity 1s ease;
-      pointer-events: none;
+    .poster:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px gold;
+      cursor: pointer;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 0 20px crimson;
+    }
+
+    .card h3 {
+      color: crimson;
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      color: #ddd;
+      font-size: 0.95rem;
+    }
+
+    #contact {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contact-card {
+      background: #111;
+      border: 1px solid crimson;
+      padding: 2rem;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+    }
+
+    .contact-card h3 {
+      color: crimson;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    input, textarea {
+      background: #000;
+      border: 1px solid crimson;
+      padding: 12px;
+      color: white;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    button {
+      background: crimson;
+      border: none;
+      padding: 12px;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: darkred;
+      box-shadow: 0 0 10px crimson;
+    }
+
+    footer {
+      background: #000;
+      text-align: center;
+      padding: 2rem;
+      color: #666;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- Preloader Video -->
+  <!-- PRELOADER -->
   <div id="preloader">
-    <video src="previd.mp4" autoplay muted playsinline></video>
+    <video autoplay muted playsinline onended="document.getElementById('preloader').style.display='none'">
+      <source src="photos/previd.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
   </div>
 
-  <!-- MAIN SITE CONTENT -->
-  <div class="container">
-    <div class="header">
-      <img src="images/drlogo1.png" class="logo" />
-      <div class="hello">
-        <ul>
-          <li><a href="#home">HOME</a></li>
-          <li><a href="#movies">MOVIES</a></li>
-          <li><a href="#about">ABOUT</a></li>
-          <li><a href="#awards">ACHIEVEMENTS</a></li>
-          <li><a href="contact.html" target="_blank">CONTACT</a></li>
-        </ul>
-        <a href="https://www.instagram.com/dr____studios" target="_blank"><img src="images/instagram.png" class="insta" /></a>
-        <a href="https://wa.me/9014979908?text=Hi" target="_blank"><img src="images/whatsapp.png" class="whatsapp" /></a>
-        <a href="https://www.youtube.com/@danushraghavendardrstudios9005" target="_blank"><img src="images/youtube.png" class="gmail" /></a>
-      </div>
+  <header>
+    <nav class="nav-with-logo">
+      <a href="#about">About</a>
+      <a href="#films">Our Works</a>
+
+      <span class="nav-logo">
+        <img src="photos/drlogo1.png" alt="Logo" />
+      </span>
+
+      <a href="#awards">Awards</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h2>#DR7</h2>
+      <p>DR Studios embarks on their biggest story yet — a feature film unlike any other.</p>
     </div>
+  </section>
 
-    <!-- HOME SECTION -->
-    <section id="home">
-      <div class="row">
-        <div class="slider">
-          <img src="images/coinfinal.png" class="slides1" />
-          <img src="images/dreadfinal.jpg" class="slides2" />
-          <img src="images/wagerfinal.jpg" class="slides3" />
-          <img src="images/switchfinal.jpg" class="slides4" />
-          <img src="images/9333final.png" class="slides5" />
+  <section id="about">
+    <h2 class="section-title">About Us</h2>
+    <p>DR Studios is a bold and visionary film production house known for crafting compelling cinematic experiences. With a track record of 6 powerful short films and 5 prestigious awards, we now set our sights on a new frontier — the feature film <strong>#DR7</strong>.</p>
+  </section>
 
-          <h3 class="slide-text">
-            <p><i class="fa-solid fa-video" style="color: red;"></i> The Coin | Drama</p>
-            <p class="des"><i class="fa-solid fa-ticket" style="color: red;"></i> A story of a friend who faces betrayal at the hands of his best friend.</p>
-            <a href="https://www.youtube.com/watch?v=X6GAn27ah5g" target="_blank"><i class="fa-solid fa-circle-play" style="color: red;"></i> Visit the channel</a>
-          </h3>
-
-          <h3 class="slide-text">
-            <p><i class="fa-solid fa-video" style="color: red;"></i> Dread | Horror</p>
-            <p class="des"><i class="fa-solid fa-ticket" style="color: red;"></i> The vengeance of a soul lost in a tragic accident.</p>
-            <a href="https://www.youtube.com/watch?v=Hz_3HUsYzZ8" target="_blank"><i class="fa-solid fa-circle-play" style="color: red;"></i> Visit the channel</a>
-          </h3>
-
-          <h3 class="slide-text">
-            <p><i class="fa-solid fa-video" style="color: red;"></i> Wager | Action</p>
-            <p class="des"><i class="fa-solid fa-ticket" style="color: red;"></i> A tale of a bounty hunter on a deadly mission to eliminate his target.</p>
-            <a href="https://www.youtube.com/watch?v=Wmmg3dk-FTE" target="_blank"><i class="fa-solid fa-circle-play" style="color: red;"></i> Visit the channel</a>
-          </h3>
-
-          <h3 class="slide-text">
-            <p><i class="fa-solid fa-video" style="color: red;"></i> Switch | Action Thriller</p>
-            <p class="des"><i class="fa-solid fa-ticket" style="color: red;"></i> The tale of a person who acquires superpowers from a mysterious doll.</p>
-            <a href="#" target="_blank"><i class="fa-solid fa-circle-play" style="color: red;"></i> Visit the channel</a>
-          </h3>
-
-          <h3 class="slide-text">
-            <p><i class="fa-solid fa-video" style="color: red;"></i> 9333 | Action Drama</p>
-            <p class="des"><i class="fa-solid fa-ticket" style="color: red;"></i> A group of friends fun night spirals into unexpected chaos.</p>
-            <a href="https://www.youtube.com/@danushraghavendardrstudios9005" target="_blank"><i class="fa-solid fa-circle-play" style="color: red;"></i> Visit the channel</a>
-          </h3>
-        </div>
-      </div>
-    </section>
-
-    <hr />
-
-    <!-- MOVIES SECTION -->
-    <section id="movies">
-      <div class="row2">
-        <div>
-          <h1 class="movietitle">|</h1> <h2 class="headmain">MOVIES</h2><br />
-          <p class="nextpara">Rooted in the world of storytelling, DR Studios offers a vibrant space for filmmaking across different genres. With five films produced, we are dedicated to storytelling, innovation, and artistic excellence.</p>
-          <a href="allmovies.html" class="all"><h2 class="headmain2">VIEW ALL -></h2></a>
-        </div>
-        <div class="box1">
-          <img src="images/coin.jpg" class="img1" style="border-radius: 10px;" />
-          <button onclick="window.open('https://www.youtube.com/watch?v=X6GAn27ah5g', '_blank')">Watch Now</button>
-        </div>
-        <div class="box1">
-          <img src="images/switch.png" class="img1" style="border-radius: 10px;" />
-          <button onclick="window.open('https://www.youtube.com/results?search_query=danush+raghavender', '_blank')">Watch Now</button>
-        </div>
-        <div class="box1">
-          <img src="images/wager.jpg" class="img1" style="border-radius: 10px;" />
-          <button onclick="window.open('https://www.youtube.com/watch?v=Wmmg3dk-FTE', '_blank')">Watch Now</button>
-        </div>
-      </div>
-    </section>
-
-    <hr />
-
-    <!-- AWARDS SECTION -->
-    <section id="awards">
-      <div class="row3">
-        <div>
-          <h1 class="movietitle">|</h1> <h2 class="headmain">AWARDS</h2><br />
-          <p class="nextpara2">DR Studios has won six awards, recognizing its excellence in storytelling and production.</p>
-        </div>
-        <div class="awards">
-          <h1 class="movietitle1">|</h1> <h1 class="headmain1">WAGER</h1><h1 class="headmain0">BEST FILM (VNR)</h1>
-          <h1 class="movietitle1">|</h1> <h1 class="headmain1">THE COIN</h1><h1 class="headmain00">BEST FILM (GRIET)</h1>
-          <h1 class="movietitle1">|</h1> <h1 class="headmain1">WAGER</h1><h1 class="headmain0">BEST EDITOR (VNR)</h1>
-        </div>
-        <div class="awards2">
-          <h1 class="movietitle10">|</h1> <h1 class="headmain10">SWITCH</h1><h1 class="headmain011">BEST DOP (VNR)</h1>
-          <h1 class="movietitle10">|</h1> <h1 class="headmain10">SWITCH</h1><h1 class="headmain011">BEST EDITOR (VNR)</h1>
-          <h1 class="movietitle10">|</h1> <h1 class="headmain10">THE COIN</h1><h1 class="headmain0111">BEST ACTOR (GRIET)</h1>
-        </div>
-      </div>
-    </section>
-
-    <hr />
-
-    <!-- ABOUT SECTION -->
-    <section id="about">
-      <div class="row2">
-        <div>
-          <h1 class="movietitle3">|</h1> <h2 class="headmain3">ABOUT</h2><br />
-          <p class="about1">DR Studios reflects a passion for storytelling, bringing unique perspectives to life through immersive cinematography and creative direction.</p><br />
-          <h1 class="aboutline">|</h1><p class="extra">The History of DRS</p>
-          <p class="about12">Established in 2021 by Danush Raghavendar and a team of passionate filmmakers, DR Studios has produced five films and won six prestigious awards for its originality and cinematic excellence.</p>
-        </div>
-      </div>
-    </section>
-
-    <hr />
-
-    <footer>
-      <p class="foot">@All Rights Reserved.</p>
-      <ol>
-        <li><a href="#home">Contact Us</a></li>
-        <li><a href="mailto:drstudiosofficial19@gmail.com" target="_blank">Email Us</a></li>
-        <li><a href="https://www.instagram.com/dr____studios" target="_blank">Instagram</a></li>
-      </ol>
-    </footer>
+  <section id="films">
+  <h2 class="section-title">Our Works</h2>
+  <div class="poster-grid">
+    <div class="poster">
+      <a href="https://www.youtube.com/watch?v=5t_icDf2yQ0" target="_blank">
+        <img src="photos/9333.png" alt="Film 1">
+      </a>
+    </div>
+    <div class="poster">
+      <a href="https://www.youtube.com/watch?v=X6GAn27ah5g" target="_blank">
+        <img src="photos/coin.jpg" alt="Film 2">
+      </a>
+    </div>
+    <div class="poster">
+      <a href="https://www.youtube.com/watch?v=X6GAn27ah5g&list=TLPQMDkwNzIwMjXbt2BRKDf5sg&index=1" target="_blank">
+        <img src="photos/dread.jpg" alt="Film 3">
+      </a>
+    </div>
+    <div class="poster">
+      <a href="https://www.youtube.com/@danushraghavendardrstudios9005" target="_blank">
+        <img src="photos/switch.png" alt="Film 4">
+      </a>
+    </div>
+    <div class="poster">
+      <a href="https://www.youtube.com/watch?v=Wmmg3dk-FTE" target="_blank">
+        <img src="photos/wager.jpg" alt="Film 5">
+      </a>
+    </div>
   </div>
+</section>
 
-  <!-- Preloader Script -->
+
+  <section id="awards">
+    <h2 class="section-title">Awards</h2>
+    <div class="grid">
+      <div class="card"><h3>🏆 IndieFest Winner</h3><p>Best Short Film – "Fragmented Truth"</p></div>
+      <div class="card"><h3>🎬 CineNow Awards</h3><p>Audience Choice – "The Unsaid"</p></div>
+      <div class="card"><h3>✂️ Frame Awards</h3><p>Best Editing – "Pulse"</p></div>
+      <div class="card"><h3>📝 ScriptCon</h3><p>Best Story – "Echoes"</p></div>
+      <div class="card"><h3>🎥 FilmForge</h3><p>Top Finalist – "Glass Souls"</p></div>
+    </div>
+  </section>
+
+  <section id="expertise">
+    <h2 class="section-title">Our Expertise</h2>
+    <div class="grid">
+      <div class="card"><h3>✍️ Screenwriting</h3><p>We create layered characters and powerful arcs that anchor unforgettable scripts.</p></div>
+      <div class="card"><h3>📖 Storytelling</h3><p>Every project we take on is guided by a strong narrative heartbeat and emotional depth.</p></div>
+      <div class="card"><h3>🎞️ Editing</h3><p>Precision pacing and seamless transitions bring our stories to life on screen.</p></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-card">
+      <h3>We’d love to hear from you</h3>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 DR Studios — Crafted with passion for cinema.
+  </footer>
+
   <script>
-    setTimeout(() => {
-      const preloader = document.getElementById("preloader");
-      const container = document.querySelector(".container");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
 
-      preloader.classList.add("fade-out");
-      setTimeout(() => {
-        preloader.style.display = "none";
-        container.style.display = "block";
-      }, 1000);
-    }, 2000);
+    document.querySelectorAll('section, .poster').forEach(el => observer.observe(el));
+
+    setTimeout(() => {
+      const p = document.getElementById('preloader');
+      if (p) p.style.display = 'none';
+    }, 5000);
   </script>
+
 </body>
 </html>
