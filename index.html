@@ -1,440 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DR Studios</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #000;
-      color: #fff;
-      line-height: 1.6;
-    }
-
-    #preloader {
-      position: fixed;
-      width: 100%;
-      height: 100vh;
-      background: black;
-      z-index: 2000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    #preloader video {
-      width: 80%;
-      max-width: 600px;
-      height: auto;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 1rem 2rem;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(6px) saturate(180%);
-      -webkit-backdrop-filter: blur(12px) saturate(180%);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: auto;
-      flex-wrap: wrap;
-    }
-
-    .nav-logo img {
-      height: 40px;
-    }
-
-    .hamburger {
-      display: none;
-      font-size: 2rem;
-      background: none;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-
-    .nav-with-logo {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .nav-with-logo a {
-      color: #aaa;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s;
-    }
-
-    .nav-with-logo a:hover {
-      color: crimson;
-      text-shadow: 0 0 10px crimson;
-      text-decoration: overline;
-    }
-
-    @media (max-width: 768px) {
-      .hamburger {
-        display: block;
-      }
-
-      .nav-with-logo {
-        display: none;
-        flex-direction: column;
-        background: rgba(0, 0, 0, 0.95);
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        text-align: center;
-        padding: 1rem 0;
-        border-top: 1px solid crimson;
-        z-index: 999;
-      }
-
-      .nav-with-logo a {
-        padding: 0.5rem 0;
-        font-size: 1.1rem;
-      }
-
-      .nav-with-logo.show {
-        display: flex;
-      }
-    }
-
-    section {
-      padding: 120px 30px 80px;
-      min-height: 100vh;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.8s ease-out;
-    }
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .section-title {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-      color: crimson;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      text-shadow: 0 0 10px crimson;
-    }
-
-    .hero {
-      background: url('https://images.unsplash.com/photo-1517602302552-471fe67acf66?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(2px);
-      z-index: 1;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      color: white;
-      animation: fadeIn 2s ease-in-out;
-    }
-
-    .hero h2 {
-      font-size: 4rem;
-      color: crimson;
-      text-shadow: 0 0 20px red;
-    }
-
-    .hero p {
-      font-size: 1.3rem;
-      color: #eee;
-      margin-top: 1rem;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(50px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .poster-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1.5rem;
-      justify-items: center;
-      margin-top: 2rem;
-    }
-
-    .poster {
-      position: relative;
-      width: 100%;
-      padding-top: 177.78%;
-      overflow: hidden;
-      border-radius: 16px;
-      box-shadow: 0 0 10px crimson;
-      background-color: #111;
-      transition: transform 0.3s, box-shadow 0.3s;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.6s ease-out;
-    }
-
-    .poster.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .poster img {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 16px;
-    }
-
-    .poster:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px gold;
-      cursor: pointer;
-    }
-
-    .grid {
-      display: grid;
-      gap: 1.5rem;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      margin-top: 2rem;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 1.5rem;
-      box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px) scale(1.03);
-      box-shadow: 0 0 20px crimson;
-    }
-
-    .card h3 {
-      color: crimson;
-      margin-bottom: 0.5rem;
-      font-size: 1.2rem;
-    }
-
-    .card p {
-      color: #ddd;
-      font-size: 0.95rem;
-    }
-
-    #contact {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .contact-card {
-      background: #111;
-      border: 1px solid crimson;
-      padding: 2rem;
-      border-radius: 16px;
-      width: 100%;
-      max-width: 500px;
-      box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
-    }
-
-    .contact-card h3 {
-      color: crimson;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    input, textarea {
-      background: #000;
-      border: 1px solid crimson;
-      padding: 12px;
-      color: white;
-      border-radius: 8px;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    button {
-      background: crimson;
-      border: none;
-      padding: 12px;
-      color: white;
-      font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background: darkred;
-      box-shadow: 0 0 10px crimson;
-    }
-
-    footer {
-      background: #000;
-      text-align: center;
-      padding: 2rem;
-      color: #666;
-      font-size: 0.9rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DR STUDIOS - Next Gen Cinema</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/drlogo1.png">
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="bg-animation"></div>
 
-  <!-- PRELOADER -->
-  <div id="preloader">
-    <video autoplay muted playsinline onended="document.getElementById('preloader').style.display='none'">
-      <source src="images/previd.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
-
-  <!-- HEADER WITH HAMBURGER -->
-  <header>
-    <div class="nav-container">
-      <span class="nav-logo">
-        <img src="images/drlogo1.png" alt="Logo" />
-      </span>
-      <button class="hamburger" id="hamburger">&#9776;</button>
-      <nav class="nav-with-logo" id="navMenu">
-        <a href="#about">About</a>
-        <a href="#films">Our Works</a>
-        <a href="#awards">Awards</a>
-        <a href="#expertise">Expertise</a>
-        <a href="#contact">Contact</a>
-      </nav>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
     </div>
-  </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <h2>#DR7</h2>
-      <p>DR Studios embarks on their biggest story yet — a feature film unlike any other.</p>
-    </div>
-  </section>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <img src="images/drlogo1.png" class="logo" alt="DR Studios Logo" style="height:60px; width:auto;">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="#home">Home</a>
+                <a href="#films">Films</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <h2 class="section-title">About Us</h2>
-    <p>DR Studios is a bold and visionary film production house known for crafting compelling cinematic experiences...</p>
-  </section>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        <div class="hero-content">
+            <img src="images/drlogo1.png" class="logo" alt="DR Studios Logo" style="height:100px; width:auto; margin-bottom:1rem;">
+            <p class="tagline">NEXT GENERATION CINEMA</p>
+            <p class="subtitle">Pushing the boundaries of storytelling through cutting-edge technology and visionary filmmaking</p>
+            <a href="#films" class="cta-button">Explore Our Universe</a>
+        </div>
+    </section>
 
-  <!-- FILMS -->
-  <section id="films">
-    <h2 class="section-title">Our Works</h2>
-    <div class="poster-grid">
-      <div class="poster"><a href="#"><img src="images/9333.png" alt="Film 1"></a></div>
-      <div class="poster"><a href="#"><img src="images/coin.jpg" alt="Film 2"></a></div>
-      <div class="poster"><a href="#"><img src="images/dread.jpg" alt="Film 3"></a></div>
-      <div class="poster"><a href="#"><img src="images/switch.png" alt="Film 4"></a></div>
-      <div class="poster"><a href="#"><img src="images/wager.jpg" alt="Film 5"></a></div>
-    </div>
-  </section>
+    <!-- Upcoming Film Section -->
+    <section id="upcoming" class="upcoming-film-section">
+        <div class="upcoming-film-content">
+            <h2 class="section-title">Our Upcoming Feature Film</h2>
+            <div class="upcoming-film-centerpiece">
+                <img src="images/DR7.png" alt="DR#7 Poster" class="upcoming-film-poster" style="max-width: 65vw; width: 90vw; display: block; margin: 0 auto 1.5rem auto; border-radius: 1.2rem; box-shadow: 0 8px 32px rgba(0,0,0,0.25);">
+                <h3 class="upcoming-film-title" style="text-align:center; font-size:2rem; margin:0.5rem 0 0.2rem 0; letter-spacing:2px;">DR#7</h3>
+                <!-- <span class="upcoming-film-badge" style="display:inline-block; background:linear-gradient(45deg, var(--primary-cyan, #06b6d4), var(--secondary-purple, #7c3aed)); color:#fff; padding:0.3em 1em; border-radius:1em; font-size:1rem; font-weight:600; margin:0 auto 1rem auto; text-align:center;">Upcoming</span> -->
+                <p class="upcoming-film-desc" style="text-align:center; max-width:500px; margin:0.5rem auto 0 auto; font-size:1.1rem; color:var(--text-secondary, #b3b3b3);">Prepare for a new era of cinema. <strong>DR#7</strong> is set to redefine storytelling with groundbreaking visuals, immersive sound, and a narrative that will leave you breathless. Stay tuned for more updates!</p>
+            </div>
+        </div>
+    </section>
 
-  <!-- AWARDS -->
-  <section id="awards">
-    <h2 class="section-title">Awards</h2>
-    <div class="grid">
-      <div class="card"><h3>🏆 IndieFest</h3><p>Best Short Film – "Fragmented Truth"</p></div>
-      <div class="card"><h3>🎬 CineNow</h3><p>Audience Choice – "The Unsaid"</p></div>
-      <div class="card"><h3>✂️ Frame Awards</h3><p>Best Editing – "Pulse"</p></div>
-    </div>
-  </section>
+    <!-- Films Section -->
+    <section id="films">
+        <h2 class="section-title">Our Cinematic Universe</h2>
+        <div class="films-carousel">
+            <button class="films-arrow left" aria-label="Scroll left">&#x25C0;</button>
+            <div class="films-grid">
+                <div class="film-card">
+                    <img src="images/9333final.png" alt="9333" class="film-poster">
+                    <div class="film-info">
+                        <h3 class="film-title">9333</h3>
+                        <p class="film-genre">Sci-Fi Thriller</p>
+                        <a href="https://www.youtube.com/watch?v=5t_icDf2yQ0" target="_blank" class="watch-btn">Watch Now</a>
+                    </div>
+                </div>
+                <div class="film-card">
+                    <img src="images/coinfinal.png" alt="Coin" class="film-poster">
+                    <div class="film-info">
+                        <h3 class="film-title">Coin</h3>
+                        <p class="film-genre">Psychological Drama</p>
+                        <a href="https://www.youtube.com/watch?v=X6GAn27ah5g" target="_blank" class="watch-btn">Watch Now</a>
+                    </div>
+                </div>
+                <div class="film-card">
+                    <img src="images/dreadfinal.jpg" alt="Dread" class="film-poster">
+                    <div class="film-info">
+                        <h3 class="film-title">Dread</h3>
+                        <p class="film-genre">Horror Mystery</p>
+                        <a href="https://www.youtube.com/watch?v=Hz_3HUsYzZ8" target="_blank" class="watch-btn">Watch Now</a>
+                    </div>
+                </div>
+                <div class="film-card">
+                    <img src="images/switchfinal.jpg" alt="Switch" class="film-poster">
+                    <div class="film-info">
+                        <h3 class="film-title">Switch</h3>
+                        <p class="film-genre">Action Thriller</p>
+                        <a href="https://youtu.be/TWWJColUnoY?si=zgAVsEd0mGTHOcKk" target="_blank" class="watch-btn">Exclusive</a>
+                    </div>
+                </div>
+                <div class="film-card">
+                    <img src="images/wagerfinal.jpg" alt="Wager" class="film-poster">
+                    <div class="film-info">
+                        <h3 class="film-title">Wager</h3>
+                        <p class="film-genre">Crime Drama</p>
+                        <a href="https://www.youtube.com/watch?v=Wmmg3dk-FTE" target="_blank" class="watch-btn">Watch Now</a>
+                    </div>
+                </div>
+            </div>
+            <button class="films-arrow right" aria-label="Scroll right">&#x25B6;</button>
+        </div>
+    </section>
 
-  <!-- EXPERTISE -->
-  <section id="expertise">
-    <h2 class="section-title">Our Expertise</h2>
-    <div class="grid">
-      <div class="card"><h3>✍️ Screenwriting</h3><p>Layered characters, powerful arcs...</p></div>
-      <div class="card"><h3>📖 Storytelling</h3><p>Strong narrative heartbeat...</p></div>
-      <div class="card"><h3>🎞️ Editing</h3><p>Precision pacing, transitions...</p></div>
-    </div>
-  </section>
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">The Future of Filmmaking</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Vision</h3>
+                <p>DR Studios is a revolutionary film production house that merges cutting-edge technology with compelling storytelling. We're not just making films – we're crafting immersive experiences that transport audiences to new dimensions of cinema.</p>
+                <p>Our team of visionary creators, technologists, and storytellers work at the intersection of art and innovation, pushing the boundaries of what's possible in modern filmmaking.</p>
+            </div>
+            <div class="about-text">
+                <h3>Innovation</h3>
+                <p>From AI-assisted editing to virtual production environments, we leverage the latest technologies to bring impossible stories to life. Our commitment to excellence drives us to constantly evolve and redefine the cinematic landscape.</p>
+                <p>Every project is an opportunity to experiment, innovate, and create something that has never been seen before.</p>
+            </div>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">5</span>
+                <span class="stat-label">Films Produced</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">6</span>
+                <span class="stat-label">Awards Won</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">60K+</span>
+                <span class="stat-label">Global Viewers</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">2025</span>
+                <span class="stat-label">Next Feature</span>
+            </div>
+        </div>
+    </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <h2 class="section-title">Get In Touch</h2>
-    <div class="contact-card">
-      <h3>We’d love to hear from you</h3>
-      <form>
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea rows="5" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </div>
-  </section>
+    <!-- Awards & Recognitions Section -->
+    <section id="awards" class="awards-section" style="padding: 3rem 0 2.5rem 0;">
+        <h2 class="section-title" style="text-align:center; color: var(--primary-cyan, #06b6d4); letter-spacing:2px; margin-bottom:2.2rem;">Awards & Recognitions</h2>
+        <div class="awards-list" style="max-width:900px; margin:0 auto; display:flex; flex-wrap:wrap; gap:2.5rem; justify-content:center;">
+            <div class="award-block" style="background:rgba(255,255,255,0.04); border-radius:1.2rem; box-shadow:0 4px 24px rgba(0,0,0,0.18); padding:2rem 2.2rem 1.5rem 2.2rem; min-width:270px; flex:1 1 320px; max-width:400px;">
+                <h3 style="margin-bottom:1rem; color:#fff; font-size:1.3rem; letter-spacing:1px; text-align:center; font-weight:700;">GREIT 70mm</h3>
+                <ul style="margin:0 0 0.5rem 0; padding:0; list-style:none;">
+                    <li style="margin-bottom:0.7em; display:flex; align-items:center;"><span style="font-size:1.3em; margin-right:0.6em;">🏆</span><span><strong>The Coin</strong> – Best Film Award</span></li>
+                    <li style="margin-bottom:0.7em; display:flex; align-items:center;"><span style="font-size:1.3em; margin-right:0.6em;">🌟</span><span><strong>The Coin</strong> – Best Performance Award</span></li>
+                </ul>
+            </div>
+            <div class="award-block" style="background:rgba(255,255,255,0.04); border-radius:1.2rem; box-shadow:0 4px 24px rgba(0,0,0,0.18); padding:2rem 2.2rem 1.5rem 2.2rem; min-width:270px; flex:1 1 320px; max-width:400px;">
+                <h3 style="margin-bottom:1rem; color:#fff; font-size:1.3rem; letter-spacing:1px; text-align:center; font-weight:700;">VJTheatro</h3>
+                <ul style="margin:0 0 0.5rem 0; padding:0; list-style:none;">
+                    <li style="margin-bottom:0.7em; display:flex; align-items:center;"><span style="font-size:1.3em; margin-right:0.6em;">🏆</span><span><strong>Wager</strong> – Best Film Award</span></li>
+                    <li style="margin-bottom:0.7em; display:flex; align-items:center;"><span style="font-size:1.3em; margin-right:0.6em;">✂️</span><span><strong>Wager</strong> – Best Editor Award</span></li>
+                    <li style="margin-bottom:0.7em; display:flex; align-items:center;"><span style="font-size:1.3em; margin-right:0.6em;">🎥</span><span><strong>Switch</strong> – Best Cinematography</span></li>
+                    <li style="margin-bottom:0.7em; display:flex; align-items:center;"><span style="font-size:1.3em; margin-right:0.6em;">✂️</span><span><strong>Switch</strong> – Best Editor</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-  <!-- FOOTER -->
-  <footer>
-    &copy; 2025 DR Studios — Crafted with passion for cinema.
-  </footer>
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Connect With The Future</h2>
+        <div class="contact-container">
+            <div class="contact-form">
+                <h3>Start Your Journey</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="project">Project Type</label>
+                        <input type="text" id="project" name="project" placeholder="Film, Commercial, Music Video, etc.">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Launch Project</button>
+                </form>
+            </div>
+            
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <p>Ready to bring your vision to life? We're here to transform your ideas into extraordinary cinematic experiences that captivate audiences worldwide.</p>
+                
+                <div class="contact-details">
+                    <p><strong>Location:</strong> Hyderabad, Telangana, India</p>
+                    <p><strong>Email:</strong> drstudiosofficial19@gmail.com</p>
+                    <p><strong>Phone:</strong> +91 9014979908</p>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://www.instagram.com/dr____studios?igsh=MTRnODNqcHNzcW9sbQ==" target="_blank" class="social-link"><img src="images/instagram.png" alt="Instagram" style="height: 24px; width: 24px; vertical-align: middle;"></a>
+                    <a href="https://wa.me/9014979908?text=Hi" target="_blank" class="social-link"><img src="images/whatsapp.png" alt="WhatsApp" style="height: 24px; width: 24px; vertical-align: middle;"></a>
+                    <a href="https://www.youtube.com/@danushraghavendardrstudios9005" target="_blank" class="social-link"><img src="images/youtube.png" alt="YouTube" style="height: 24px; width: 24px; vertical-align: middle;"></a>
+                    <a href="mailto:drstudiosofficial19@gmail.com" target="_blank" class="social-link"><img src="images/drlogo1.png" alt="Gmail" style="height: 24px; width: 24px; vertical-align: middle;"></a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- JS -->
-  <script>
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p><img src="images/drlogo1.png" alt="DR Studios Logo" style="height:24px; width:auto; vertical-align:middle;"> &copy; 2025 DR Studios. All rights reserved. | Crafting the future of cinema, one frame at a time.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('preloader').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('preloader').style.display = 'none';
+                }, 800);
+            }, 1500);
+        });
+
+        // Mobile Navigation
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements that need animation
+        document.querySelectorAll('.section-title, .film-card, .about-text, .stat-card, .contact-form, .contact-info').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add staggered animation to film cards
+        document.querySelectorAll('.film-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.2}s`;
+        });
+
+        // Add staggered animation to stat cards
+        document.querySelectorAll('.stat-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 15, 0.95)';
+            } else {
+                header.style.background = 'rgba(10, 10, 15, 0.8)';
+            }
+        });
+
+        // Animated counter for stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = counter.textContent;
+                const isNumeric = /^\d+/.test(target);
+                
+                if (isNumeric) {
+                    const number = parseInt(target.replace(/\D/g, ''));
+                    const suffix = target.replace(/\d/g, '');
+                    let current = 0;
+                    const increment = number / 100;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= number) {
+                            counter.textContent = number + suffix;
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = Math.floor(current) + suffix;
+                        }
+                    }, 20);
+                }
+            });
         }
-      });
-    }, { threshold: 0.15 });
 
-    document.querySelectorAll('section, .poster').forEach(el => observer.observe(el));
+        // Trigger counter animation when stats section is visible
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
 
-    setTimeout(() => {
-      const p = document.getElementById('preloader');
-      if (p) p.style.display = 'none';
-    }, 5000);
+        const statsSection = document.querySelector('.stats-grid');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
 
-    // Hamburger Toggle
-    document.getElementById('hamburger').addEventListener('click', () => {
-      document.getElementById('navMenu').classList.toggle('show');
-    });
-  </script>
+        // Form submission
+        document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const project = formData.get('project');
+            const message = formData.get('message');
+            
+            // Create email body
+            const emailBody = `Name: ${name}%0AEmail: ${email}%0AProject Type: ${project}%0AMessage: ${message}`;
+            
+            // Open email client
+            window.open(`mailto:drstudiosofficial19@gmail.com?subject=New Project Inquiry&body=${emailBody}`);
+            
+            // Reset form
+            this.reset();
+            
+            // Show success message
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Message Sent!';
+            submitBtn.style.background = 'linear-gradient(45deg, #10b981, #059669)';
+            
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.style.background = 'linear-gradient(45deg, var(--primary-cyan), var(--secondary-purple))';
+            }, 3000);
+        });
 
+        // Parallax effect for hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add glitch effect to logo on hover
+        const logo = document.querySelector('.logo');
+        if (logo) {
+            logo.addEventListener('mouseenter', function() {
+                this.style.animation = 'glitch 0.5s ease-in-out';
+            });
+            
+            logo.addEventListener('animationend', function() {
+                this.style.animation = 'glow 2s ease-in-out infinite alternate';
+            });
+        }
+
+        // Add glitch keyframes dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes glitch {
+                0% { transform: translateX(0); }
+                20% { transform: translateX(-2px); }
+                40% { transform: translateX(2px); }
+                60% { transform: translateX(-1px); }
+                80% { transform: translateX(1px); }
+                100% { transform: translateX(0); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add particle animation on scroll
+        let particleCount = 0;
+        window.addEventListener('scroll', function() {
+            if (particleCount < 50) {
+                createParticle();
+                particleCount++;
+            }
+        });
+
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.width = '2px';
+            particle.style.height = '2px';
+            particle.style.background = 'var(--primary-cyan)';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = Math.random() * window.innerHeight + 'px';
+            particle.style.opacity = '0.8';
+            particle.style.zIndex = '1';
+            
+            document.body.appendChild(particle);
+            
+            // Animate particle
+            particle.animate([
+                { transform: 'translateY(0px)', opacity: 0.8 },
+                { transform: 'translateY(-100px)', opacity: 0 }
+            ], {
+                duration: 3000,
+                easing: 'ease-out'
+            }).onfinish = function() {
+                particle.remove();
+                particleCount--;
+            };
+        }
+
+        // Films grid arrow scroll
+        const filmsGrid = document.querySelector('.films-grid');
+        const leftArrow = document.querySelector('.films-arrow.left');
+        const rightArrow = document.querySelector('.films-arrow.right');
+        if (filmsGrid && leftArrow && rightArrow) {
+            leftArrow.addEventListener('click', () => {
+                const card = filmsGrid.querySelector('.film-card');
+                if (card) filmsGrid.scrollBy({ left: -card.offsetWidth - 24, behavior: 'smooth' });
+            });
+            rightArrow.addEventListener('click', () => {
+                const card = filmsGrid.querySelector('.film-card');
+                if (card) filmsGrid.scrollBy({ left: card.offsetWidth + 24, behavior: 'smooth' });
+            });
+        }
+    </script>
 </body>
 </html>
